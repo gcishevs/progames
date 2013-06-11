@@ -5,16 +5,17 @@ $(function()
 	 var paper = Raphael('paper', 500, 500);
 	//var circle = paper.circle(100,100, 50);
 
-	for(var i = 1; i < 7; i++)
+	for(var i = 1; i < 5; i++)
 	 {
 	// 	var multiplier = i*5;
 	// 	paper.circle(250 + (2*multiplier), 100 + multiplier, 50 - multiplier);
 
-		 paper.rect(10 + 50 * i, 20, 45, 30)
-         .attr({gradient: '90-#526c7a-#64a0c1', stroke: '#3b4449'})
+		 paper.rect(10 + 75 * i, 20, 70, 40, 10)
+         .attr({gradient: '290-#526c7a-#fff', stroke: '#3b4449'})
          .data("i", i)
          .click(function () {
-            this.animate({y: 500, opacity: 0, stroke: 'none'}, 7000, function() 
+         	this.unclick();
+            this.animate({y: 490}, 8000, function() 
             { 
               this.remove();  
             });  
