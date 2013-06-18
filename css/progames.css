@@ -5,3 +5,13 @@
 	border: 1px solid #aaa;
 	background-color: #ccefe1;  
 }
+
+#paper.error
+{
+	border: 3px solid red;
+}
+
+#paper.success
+{
+	border: 3px solid green;
+}
