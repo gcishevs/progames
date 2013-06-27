@@ -1,6 +1,9 @@
 $(function() {
 
-	var paper = Raphael('paper', 300, 300);
+
+	var width = $('#paper').width();
+
+	var paper = Raphael('paper', width, 500);
 
 	var rect;
 
@@ -10,7 +13,15 @@ $(function() {
 
 	var time = 4000;
 
+
+
+
+	
 	var countCheck = 5;
+
+	var bonusX;
+
+	var bonusY;
 
 	var set = paper.set();
 
@@ -38,43 +49,45 @@ $(function() {
 	{
 
 	   	animC = Raphael.animation({
-			cy: 280
-		}, 4000, "bounce", function() {
+			cy: 450
+		}, 5000, "bounce", function() {
+			animateFault(this.attr('cx'), 450);
 			this.remove();
+			
 		});
 
 		anim = Raphael.animation({
-			y: 280
-		}, 4000, "bounce", function() {
+			y: 450
+		}, 5000, "bounce", function() {
 			this.remove();
 		});
 
-		animB = Raphael.animation({
-			path: _transformedPath
-		}, 6000, function() {
-			this.remove();
-		});
+		// animB = Raphael.animation({
+		// 	path: _transformedPath
+		// }, 6000, function() {
+		// 	this.remove();
+		// });
 
 
 	}
 
-	var randomBX = getRandom(30, 250);
+	//var randomBX = getRandom(30, width);
 
-	var _transformedPath = Raphael.transformPath('M14.615,4.928c0.487-0.986,1.284-0.986,1.771,0l2.249,4.554c0.486,0.986,1.775,1.923,2.864,2.081l5.024,0.73c1.089,0.158,1.335,0.916,0.547,1.684l-3.636,3.544c-0.788,0.769-1.28,2.283-1.095,3.368l0.859,5.004c0.186,1.085-0.459,1.553-1.433,1.041l-4.495-2.363c-0.974-0.512-2.567-0.512-3.541,0l-4.495,2.363c-0.974,0.512-1.618,0.044-1.432-1.041l0.858-5.004c0.186-1.085-0.307-2.6-1.094-3.368L3.93,13.977c-0.788-0.768-0.542-1.525,0.547-1.684l5.026-0.73c1.088-0.158,2.377-1.095,2.864-2.081L14.615,4.928z', 'T' + randomBX + ',260');
+	//var _transformedPath = Raphael.transformPath('M14.615,4.928c0.487-0.986,1.284-0.986,1.771,0l2.249,4.554c0.486,0.986,1.775,1.923,2.864,2.081l5.024,0.73c1.089,0.158,1.335,0.916,0.547,1.684l-3.636,3.544c-0.788,0.769-1.28,2.283-1.095,3.368l0.859,5.004c0.186,1.085-0.459,1.553-1.433,1.041l-4.495-2.363c-0.974-0.512-2.567-0.512-3.541,0l-4.495,2.363c-0.974,0.512-1.618,0.044-1.432-1.041l0.858-5.004c0.186-1.085-0.307-2.6-1.094-3.368L3.93,13.977c-0.788-0.768-0.542-1.525,0.547-1.684l5.026-0.73c1.088-0.158,2.377-1.095,2.864-2.081L14.615,4.928z', 'T' + randomBX + ',260');
 
-	var anim = Raphael.animation(animParam, 2000);
+	var anim = Raphael.animation(animParam, 5000);
 	var animParam = {
-		y: 300
+		y: 450
 	};
 
-	var animB = Raphael.animation(animParamB, 2000);
-	var animParamB = {
-		path: _transformedPath
-	};
+	// var animB = Raphael.animation(animParamB, 2000);
+	// var animParamB = {
+	// 	path: _transformedPath
+	// };
 
-	var animC = Raphael.animation(animParamC, 2000);
+	var animC = Raphael.animation(animParamC, 5000);
 	var animParamC = {
-		cy: 300
+		cy: 450
 	};
 
 
@@ -83,51 +96,55 @@ $(function() {
 		$('#paper').removeClass("error");
 		$('#value').focus();
 
+		var color = getColor();
+
 		var c_fill = {
-			fill: '#2980B9',
-			cursor: "pointer"
+			fill: 'none',
+			stroke: color,
+			"stroke-width": 8
 		};
 
 		var t_fill = {
-			fill: "white",
-			'font-size': "15"
+			fill: color,
+			"font-family": "Lato, sans-serif",
+			'font-size': "25",
 		};
 
-		var randomNum1 = getRandom(1, 9);
+		var randomNum1 = getRandom(2, 9);
 
-		var randomNum2 = getRandom(1, 9)
+		var randomNum2 = getRandom(2, 9)
 
-		var randomX = getRandom(30, 250);
+		var randomX = getRandom(55, (width - 55));
 
 		var answer = randomNum1 * randomNum2;
 
 		var question = randomNum1 + " x " + randomNum2;
 
-		rect = paper.circle(randomX, 10, 20);
+		rect = paper.circle(randomX, 10, 50);
 		rect.attr(c_fill);
-		var ball = paper.path("M14.615,4.928c0.487-0.986,1.284-0.986,1.771,0l2.249,4.554c0.486,0.986,1.775,1.923,2.864,2.081l5.024,0.73c1.089,0.158,1.335,0.916,0.547,1.684l-3.636,3.544c-0.788,0.769-1.28,2.283-1.095,3.368l0.859,5.004c0.186,1.085-0.459,1.553-1.433,1.041l-4.495-2.363c-0.974-0.512-2.567-0.512-3.541,0l-4.495,2.363c-0.974,0.512-1.618,0.044-1.432-1.041l0.858-5.004c0.186-1.085-0.307-2.6-1.094-3.368L3.93,13.977c-0.788-0.768-0.542-1.525,0.547-1.684l5.026-0.73c1.088-0.158,2.377-1.095,2.864-2.081L14.615,4.928z");
 
-		ball.attr({  
-    		fill: '90-#526c7a-#64a0c1',
-    		'fill-opacity': 0.5,
-             stroke: 'orange'
-		});
+		//var ball = paper.path("M14.615,4.928c0.487-0.986,1.284-0.986,1.771,0l2.249,4.554c0.486,0.986,1.775,1.923,2.864,2.081l5.024,0.73c1.089,0.158,1.335,0.916,0.547,1.684l-3.636,3.544c-0.788,0.769-1.28,2.283-1.095,3.368l0.859,5.004c0.186,1.085-0.459,1.553-1.433,1.041l-4.495-2.363c-0.974-0.512-2.567-0.512-3.541,0l-4.495,2.363c-0.974,0.512-1.618,0.044-1.432-1.041l0.858-5.004c0.186-1.085-0.307-2.6-1.094-3.368L3.93,13.977c-0.788-0.768-0.542-1.525,0.547-1.684l5.026-0.73c1.088-0.158,2.377-1.095,2.864-2.081L14.615,4.928z");
+
+		// ball.attr({  
+  //   		fill: '90-#526c7a-#64a0c1',
+  //   		'fill-opacity': 0.5,
+  //            stroke: 'orange'
+		// });
 
 
 		text = paper.text(randomX, 10, question);
 		text.data('value', answer);
-		ball.data('value', answer);
 		rect.data('value', answer);
 		text.attr(t_fill);
 		
 
-		set.push(ball, rect, text);
+		set.push(rect, text);
 
 
 		moveAnimation();
-		ball.animate(animB);
-		text.animateWith(ball, animParam, anim);
-		rect.animateWith(text, animParamC, animC);
+		rect.animate(animC);
+		text.animateWith(text, animParam, anim);
+		
 
 
 		if (count >= countCheck) {
@@ -150,19 +167,80 @@ $(function() {
 			if (value == elem.data("value")) {
 				count += 0.5;
 				$('#paper').addClass("success");
+
+				if(elem.type == 'circle')
+				{
+					bonusX = elem.attr('cx');
+				bonusY = elem.attr('cy');
+				animateSuccess(bonusX, bonusY);
+				}
+	
 				elem.remove();
 				$('#value').val('');
 			} else {
-				$('#paper').addClass("error");
 				$('#value').val('');
 			}
 
 		})
 	}
 
+
+	function animateSuccess(x, y)
+	{
+		var bonus = paper.text(x, y, "+10");
+
+		var bonus_fill = {
+			fill: "#1ABC9C",
+			"font-family": "Lato, sans-serif",
+			'font-size': "25"
+		};
+
+		bonus.attr(bonus_fill);
+
+		bonusY = y - 50;
+
+		bonus.animate({y: bonusY
+		}, 2000, function() {
+			this.remove();
+		});
+
+
+
+	}
+
+	function animateFault(x, y)
+	{
+		var bonus = paper.text(x, y, "-10");
+
+		var bonus_fill = {
+			fill: "#E74C3C",
+			"font-family": "Lato, sans-serif",
+			'font-size': "25"
+		};
+
+		bonus.attr(bonus_fill);
+
+		bonusY = y - 50;
+
+		bonus.animate({y: bonusY
+		}, 2000, function() {
+			this.remove();
+		});
+
+
+
+	}
+
 	
 	function getRandom(min, max) {
 		return min + Math.floor(Math.random() * (max - min + 1));
+	}
+
+	function getColor()
+	{
+		//var colors = new Array("#2ECC71","#3498DB","#9B59B6","#34495E","#2980B9","#8E44AD","#F39C12","#D35400","#E67E22");
+		var colors = new Array("#1ABC9C","#3498DB","#9B59B6","#E74C3C","#34495E");
+		return colors[getRandom(0, 4)];
 	}
 
 });

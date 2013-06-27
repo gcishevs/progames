@@ -2,17 +2,18 @@
 {
 	width: auto;
 	height: 500px;
-	border: 1px solid #aaa;
+	border-radius: 6px;
+	/*border: 1px solid #aaa;*/
 	/*background-color: #ccefe1;
 	background-image: url(../images/backgroung.jpg);  */
 }
 
 #paper.error
 {
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 }
 
 #paper.success
 {
-	border: 1px solid green;
+	/*border: 1px solid green;*/
 }
