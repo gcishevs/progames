@@ -6,22 +6,20 @@ $(function() {
 
 	var text;
 
-	var interval;
-
 	var count = 0;
 
 	var time = 4000;
 
 	var countCheck = 5;
 
-	$('#value').focus();
-
 	var set = paper.set();
+
+	$('#value').focus();
 
 	createSet();
 
-	interval = setInterval(createSet, time);
-
+	var interval = setInterval(createSet, time);
+	
 	$('#enter').click(function() {
 		stop();
 	});
@@ -39,9 +37,7 @@ $(function() {
 
 	{
 
-		
-
-      	animC = Raphael.animation({
+	   	animC = Raphael.animation({
 			cy: 280
 		}, 4000, "bounce", function() {
 			this.remove();
@@ -55,7 +51,7 @@ $(function() {
 
 		animB = Raphael.animation({
 			path: _transformedPath
-		}, 4000, "bounce", function() {
+		}, 6000, function() {
 			this.remove();
 		});
 

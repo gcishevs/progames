@@ -1,10 +1,10 @@
 #paper
 {
-	width: 300px;
-	height: 300px;
+	width: auto;
+	height: 500px;
 	border: 1px solid #aaa;
-	background-color: #ccefe1;
-	background-image: url(../images/backgroung.jpg);  
+	/*background-color: #ccefe1;
+	background-image: url(../images/backgroung.jpg);  */
 }
 
 #paper.error
