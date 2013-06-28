@@ -12,16 +12,60 @@ $(function() {
 	var count = 0;
 
 	var time = 4000;
-
-
-
-
 	
 	var countCheck = 5;
 
 	var bonusX;
 
+	var points = 0;
+
+	var counts = 0;
+
 	var bonusY;
+
+	var pointsFrame = paper.rect(10, 10, 90, 90, 20);
+
+	var pointsFrame_fill = {
+		fill: 'none',
+		stroke: '#E74C3C',
+		"stroke-width": 8
+	}
+
+	var pointsText = paper.text(50, 55, points);
+
+	var pointsText_fill = {
+			fill: '#1ABC9C',
+			"font-family": "Lato, sans-serif",
+			'font-size': "30",
+		};
+
+
+
+	pointsFrame.attr(pointsFrame_fill);
+
+	pointsText.attr(pointsText_fill);
+
+	var countFrame = paper.rect(10, 120, 90, 90, 20);
+
+	var countFrame_fill = {
+		fill: 'none',
+		stroke: '#E74C3C',
+		"stroke-width": 8
+	}
+
+	var countText = paper.text(50, 165, counts);
+
+	var countText_fill = {
+			fill: '#1ABC9C',
+			"font-family": "Lato, sans-serif",
+			'font-size': "30",
+		};
+
+
+
+	countFrame.attr(countFrame_fill);
+
+	countText.attr(countText_fill);
 
 	var set = paper.set();
 
@@ -92,6 +136,13 @@ $(function() {
 
 
 	function createSet() {
+
+        
+
+        counts += 1;
+
+       updateCount(counts);
+
 		$('#paper').removeClass("success");
 		$('#paper').removeClass("error");
 		$('#value').focus();
@@ -114,7 +165,7 @@ $(function() {
 
 		var randomNum2 = getRandom(2, 9)
 
-		var randomX = getRandom(55, (width - 55));
+		var randomX = getRandom(105, (width - 55));
 
 		var answer = randomNum1 * randomNum2;
 
@@ -143,7 +194,7 @@ $(function() {
 
 		moveAnimation();
 		rect.animate(animC);
-		text.animateWith(text, animParam, anim);
+		text.animateWith(rect, animParam, anim);
 		
 
 
@@ -204,6 +255,12 @@ $(function() {
 			this.remove();
 		});
 
+		prPoints = points;
+
+		points += 10;
+
+		updatePoints(points);
+
 
 
 	}
@@ -227,6 +284,10 @@ $(function() {
 			this.remove();
 		});
 
+		points -= 10;
+
+		updatePoints(points);
+
 
 
 	}
@@ -241,6 +302,51 @@ $(function() {
 		//var colors = new Array("#2ECC71","#3498DB","#9B59B6","#34495E","#2980B9","#8E44AD","#F39C12","#D35400","#E67E22");
 		var colors = new Array("#1ABC9C","#3498DB","#9B59B6","#E74C3C","#34495E");
 		return colors[getRandom(0, 4)];
+	}
+
+
+	function updatePoints(text)
+	{
+		pointsText.attr({text: text});
+	} 
+
+
+	function updateCount(count)
+	{
+		
+
+		var prCount = paper.text(0, 165, count);
+
+
+		var prCount_fill = {
+			fill: '#1ABC9C',
+			"font-family": "Lato, sans-serif",
+			'font-size': "30",
+			'fill-opacity': '0.1'
+		};
+
+
+		prCount.attr(prCount_fill);
+
+		var countAnimation = Raphael.animation({
+			x: 90, 'fill-opacity': 0.1}, 900, function(){
+				this.remove()
+			}
+		);
+
+		var prCountAnimation = Raphael.animation({
+			x: 50, 'fill-opacity': 1}, 900, function()
+			{
+				countText = this;
+			}
+		);
+
+		var animParamP = {
+		  x: 50
+		};
+
+		countText.animate(countAnimation);
+		prCount.animateWith(countText, animParamP, prCountAnimation);
 	}
 
 });
