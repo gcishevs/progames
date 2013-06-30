@@ -21,51 +21,87 @@ $(function() {
 
 	var counts = 0;
 
+	var success = 0;
+
+	var fail = 0;
+
 	var bonusY;
 
-	var pointsFrame = paper.rect(10, 10, 90, 90, 20);
+	var header_fill = {
+			fill: '#ECF0F1',
+			stroke: 'none'
+		};
 
-	var pointsFrame_fill = {
-		fill: 'none',
-		stroke: '#E74C3C',
-		"stroke-width": 8
-	}
+		var base_fill = {
+			fill: '#ECF0F1',
+			stroke: 'none',
+			'fill-opacity': 0.5
+		};
 
-	var pointsText = paper.text(50, 55, points);
+	var pointsBase = paper.rect(20, 35, 65, 80);
+	var pointsHeader = paper.rect(20, 15, 65, 20);
 
-	var pointsText_fill = {
+	pointsBase.attr(base_fill);
+	pointsHeader.attr(header_fill);
+
+	var countsBase = paper.rect(20, 35, 65, 80);
+	var countsHeader = paper.rect(20, 15, 65, 20);
+
+	countsBase.attr(base_fill);
+	countsHeader.attr(header_fill);
+
+	var pointsText = paper.text(50, 25, 'points');
+
+	var text_fill = {
+			fill: '#E74C3C',
+			"font-family": "Lato, sans-serif",
+			'font-size': "15",
+		};
+
+		
+
+
+	pointsText.attr(text_fill);
+
+	var pointsValue = paper.text(50, 55, points);
+
+
+
+	var value_fill = {
 			fill: '#1ABC9C',
 			"font-family": "Lato, sans-serif",
 			'font-size': "30",
 		};
 
 
+	pointsValue.attr(value_fill);
 
-	pointsFrame.attr(pointsFrame_fill);
+	var countText = paper.text(50, 135, 'counts');
+	
 
-	pointsText.attr(pointsText_fill);
+	countText.attr(text_fill);
+	
+	var countValue = paper.text(50, 165, counts);
 
-	var countFrame = paper.rect(10, 120, 90, 90, 20);
+	countValue.attr(value_fill);
 
-	var countFrame_fill = {
-		fill: 'none',
-		stroke: '#E74C3C',
-		"stroke-width": 8
-	}
+	var successText = paper.text(50, 245, 'success');
+	
 
-	var countText = paper.text(50, 165, counts);
+	successText.attr(text_fill);
+	
+	var successValue = paper.text(50, 275, 0);
 
-	var countText_fill = {
-			fill: '#1ABC9C',
-			"font-family": "Lato, sans-serif",
-			'font-size': "30",
-		};
+	successValue.attr(value_fill);
 
+	var failText = paper.text(50, 355, 'fail');
+	
 
+	failText.attr(text_fill);
+	
+	var failValue = paper.text(50, 385, 0);
 
-	countFrame.attr(countFrame_fill);
-
-	countText.attr(countText_fill);
+	failValue.attr(value_fill);
 
 	var set = paper.set();
 
@@ -255,12 +291,13 @@ $(function() {
 			this.remove();
 		});
 
-		prPoints = points;
-
 		points += 10;
 
 		updatePoints(points);
 
+		success += 1
+
+        updateSuccess(success)
 
 
 	}
@@ -288,6 +325,9 @@ $(function() {
 
 		updatePoints(points);
 
+        fail += 1
+
+        updateFail(fail)
 
 
 	}
@@ -307,7 +347,7 @@ $(function() {
 
 	function updatePoints(text)
 	{
-		pointsText.attr({text: text});
+		pointsValue.attr({text: text});
 	} 
 
 
@@ -337,7 +377,7 @@ $(function() {
 		var prCountAnimation = Raphael.animation({
 			x: 50, 'fill-opacity': 1}, 900, function()
 			{
-				countText = this;
+				countValue = this;
 			}
 		);
 
@@ -345,8 +385,20 @@ $(function() {
 		  x: 50
 		};
 
-		countText.animate(countAnimation);
-		prCount.animateWith(countText, animParamP, prCountAnimation);
+		countValue.animate(countAnimation);
+		prCount.animateWith(countValue, animParamP, prCountAnimation);
+	}
+
+	function updateSuccess(text)
+	{
+		successValue.attr({text: text});
+
+	}
+
+	function updateFail(text)
+	{
+		failValue.attr({text: text});
+
 	}
 
 });
