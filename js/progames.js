@@ -27,28 +27,49 @@ $(function() {
 
 	var bonusY;
 
-	var header_fill = {
-			fill: '#ECF0F1',
-			stroke: 'none'
-		};
 
 		var base_fill = {
-			fill: '#ECF0F1',
-			stroke: 'none',
-			'fill-opacity': 0.5
+			'stroke-width': 0.2
 		};
 
-	var pointsBase = paper.rect(20, 35, 65, 80);
-	var pointsHeader = paper.rect(20, 15, 65, 20);
 
-	pointsBase.attr(base_fill);
-	pointsHeader.attr(header_fill);
+	var lineLeft = paper.path("M{0} {1}L{2} {3}", 95, 5, 95, 497);
 
-	var countsBase = paper.rect(20, 35, 65, 80);
-	var countsHeader = paper.rect(20, 15, 65, 20);
+	// var lineRight = paper.path("M{0} {1}L{2} {3}", width, 5, width, 497);
 
-	countsBase.attr(base_fill);
-	countsHeader.attr(header_fill);
+	// var lineTop = paper.path("M{0} {1}L{2} {3}", 5, 2, width, 2);
+
+	// var lineBottom = paper.path("M{0} {1}L{2} {3}", 5, 499, width, 499);
+
+	lineLeft.attr(base_fill);
+	// lineRight.attr(base_fill);
+	// lineTop.attr(base_fill);
+	// lineBottom.attr(base_fill);
+
+
+
+	// var header_fill = {
+	// 		fill: '#ECF0F1',
+	// 		stroke: 'none'
+	// 	};
+
+	// 	var base_fill = {
+	// 		fill: '#ECF0F1',
+	// 		stroke: 'none',
+	// 		'fill-opacity': 0.5
+	// 	};
+
+	// var pointsBase = paper.rect(20, 35, 65, 80);
+	// var pointsHeader = paper.rect(20, 15, 65, 20);
+
+	// pointsBase.attr(base_fill);
+	// pointsHeader.attr(header_fill);
+
+	// var countsBase = paper.rect(20, 35, 65, 80);
+	// var countsHeader = paper.rect(20, 15, 65, 20);
+
+	// countsBase.attr(base_fill);
+	// countsHeader.attr(header_fill);
 
 	var pointsText = paper.text(50, 25, 'points');
 
