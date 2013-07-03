@@ -12,7 +12,7 @@ $(function() {
 	var count = 0;
 
 	var time = 4000;
-	
+
 	var countCheck = 5;
 
 	var bonusX;
@@ -27,25 +27,23 @@ $(function() {
 
 	var bonusY;
 
-
-		var base_fill = {
-			'stroke-width': 0.2
-		};
+	var base_fill = {
+		stroke: '#1ABC9C'
+	};
 
 
 	var lineLeft = paper.path("M{0} {1}L{2} {3}", 95, 5, 95, 497);
 
-	// var lineRight = paper.path("M{0} {1}L{2} {3}", width, 5, width, 497);
+	/*var lineRight = paper.path("M{0} {1}L{2} {3}", (width - 2), 5, (width -2), 497);*/
 
 	// var lineTop = paper.path("M{0} {1}L{2} {3}", 5, 2, width, 2);
 
 	// var lineBottom = paper.path("M{0} {1}L{2} {3}", 5, 499, width, 499);
 
 	lineLeft.attr(base_fill);
-	// lineRight.attr(base_fill);
+	/*lineRight.attr(base_fill);
 	// lineTop.attr(base_fill);
-	// lineBottom.attr(base_fill);
-
+	lineBottom.attr(base_fill);*/
 
 
 	// var header_fill = {
@@ -74,12 +72,11 @@ $(function() {
 	var pointsText = paper.text(50, 25, 'points');
 
 	var text_fill = {
-			fill: '#E74C3C',
-			"font-family": "Lato, sans-serif",
-			'font-size': "15",
-		};
+		fill: '#E74C3C',
+		"font-family": "Lato, sans-serif",
+		'font-size': "15",
+	};
 
-		
 
 
 	pointsText.attr(text_fill);
@@ -89,37 +86,37 @@ $(function() {
 
 
 	var value_fill = {
-			fill: '#1ABC9C',
-			"font-family": "Lato, sans-serif",
-			'font-size': "30",
-		};
+		fill: '#1ABC9C',
+		"font-family": "Lato, sans-serif",
+		'font-size': "30",
+	};
 
 
 	pointsValue.attr(value_fill);
 
 	var countText = paper.text(50, 135, 'counts');
-	
+
 
 	countText.attr(text_fill);
-	
+
 	var countValue = paper.text(50, 165, counts);
 
 	countValue.attr(value_fill);
 
 	var successText = paper.text(50, 245, 'success');
-	
+
 
 	successText.attr(text_fill);
-	
+
 	var successValue = paper.text(50, 275, 0);
 
 	successValue.attr(value_fill);
 
 	var failText = paper.text(50, 355, 'fail');
-	
+
 
 	failText.attr(text_fill);
-	
+
 	var failValue = paper.text(50, 385, 0);
 
 	failValue.attr(value_fill);
@@ -131,7 +128,7 @@ $(function() {
 	createSet();
 
 	var interval = setInterval(createSet, time);
-	
+
 	$('#enter').click(function() {
 		stop();
 	});
@@ -149,12 +146,12 @@ $(function() {
 
 	{
 
-	   	animC = Raphael.animation({
+		animC = Raphael.animation({
 			cy: 450
 		}, 5000, "bounce", function() {
 			animateFault(this.attr('cx'), 450);
 			this.remove();
-			
+
 		});
 
 		anim = Raphael.animation({
@@ -194,11 +191,11 @@ $(function() {
 
 	function createSet() {
 
-        
 
-        counts += 1;
 
-       updateCount(counts);
+		counts += 1;
+
+		updateCount(counts);
 
 		$('#paper').removeClass("success");
 		$('#paper').removeClass("error");
@@ -234,9 +231,9 @@ $(function() {
 		//var ball = paper.path("M14.615,4.928c0.487-0.986,1.284-0.986,1.771,0l2.249,4.554c0.486,0.986,1.775,1.923,2.864,2.081l5.024,0.73c1.089,0.158,1.335,0.916,0.547,1.684l-3.636,3.544c-0.788,0.769-1.28,2.283-1.095,3.368l0.859,5.004c0.186,1.085-0.459,1.553-1.433,1.041l-4.495-2.363c-0.974-0.512-2.567-0.512-3.541,0l-4.495,2.363c-0.974,0.512-1.618,0.044-1.432-1.041l0.858-5.004c0.186-1.085-0.307-2.6-1.094-3.368L3.93,13.977c-0.788-0.768-0.542-1.525,0.547-1.684l5.026-0.73c1.088-0.158,2.377-1.095,2.864-2.081L14.615,4.928z");
 
 		// ball.attr({  
-  //   		fill: '90-#526c7a-#64a0c1',
-  //   		'fill-opacity': 0.5,
-  //            stroke: 'orange'
+		//   		fill: '90-#526c7a-#64a0c1',
+		//   		'fill-opacity': 0.5,
+		//            stroke: 'orange'
 		// });
 
 
@@ -244,7 +241,7 @@ $(function() {
 		text.data('value', answer);
 		rect.data('value', answer);
 		text.attr(t_fill);
-		
+
 
 		set.push(rect, text);
 
@@ -252,7 +249,7 @@ $(function() {
 		moveAnimation();
 		rect.animate(animC);
 		text.animateWith(rect, animParam, anim);
-		
+
 
 
 		if (count >= countCheck) {
@@ -276,13 +273,12 @@ $(function() {
 				count += 0.5;
 				$('#paper').addClass("success");
 
-				if(elem.type == 'circle')
-				{
+				if (elem.type == 'circle') {
 					bonusX = elem.attr('cx');
-				bonusY = elem.attr('cy');
-				animateSuccess(bonusX, bonusY);
+					bonusY = elem.attr('cy');
+					animateSuccess(bonusX, bonusY);
 				}
-	
+
 				elem.remove();
 				$('#value').val('');
 			} else {
@@ -293,8 +289,7 @@ $(function() {
 	}
 
 
-	function animateSuccess(x, y)
-	{
+	function animateSuccess(x, y) {
 		var bonus = paper.text(x, y, "+10");
 
 		var bonus_fill = {
@@ -307,7 +302,8 @@ $(function() {
 
 		bonusY = y - 50;
 
-		bonus.animate({y: bonusY
+		bonus.animate({
+			y: bonusY
 		}, 2000, function() {
 			this.remove();
 		});
@@ -318,13 +314,12 @@ $(function() {
 
 		success += 1
 
-        updateSuccess(success)
+		updateSuccess(success)
 
 
 	}
 
-	function animateFault(x, y)
-	{
+	function animateFault(x, y) {
 		var bonus = paper.text(x, y, "-10");
 
 		var bonus_fill = {
@@ -337,7 +332,8 @@ $(function() {
 
 		bonusY = y - 50;
 
-		bonus.animate({y: bonusY
+		bonus.animate({
+			y: bonusY
 		}, 2000, function() {
 			this.remove();
 		});
@@ -346,35 +342,34 @@ $(function() {
 
 		updatePoints(points);
 
-        fail += 1
+		fail += 1
 
-        updateFail(fail)
+		updateFail(fail)
 
 
 	}
 
-	
+
 	function getRandom(min, max) {
 		return min + Math.floor(Math.random() * (max - min + 1));
 	}
 
-	function getColor()
-	{
+	function getColor() {
 		//var colors = new Array("#2ECC71","#3498DB","#9B59B6","#34495E","#2980B9","#8E44AD","#F39C12","#D35400","#E67E22");
-		var colors = new Array("#1ABC9C","#3498DB","#9B59B6","#E74C3C","#34495E");
+		var colors = new Array("#1ABC9C", "#3498DB", "#9B59B6", "#E74C3C", "#34495E");
 		return colors[getRandom(0, 4)];
 	}
 
 
-	function updatePoints(text)
-	{
-		pointsValue.attr({text: text});
-	} 
+	function updatePoints(text) {
+		pointsValue.attr({
+			text: text
+		});
+	}
 
 
-	function updateCount(count)
-	{
-		
+	function updateCount(count) {
+
 
 		var prCount = paper.text(0, 165, count);
 
@@ -390,35 +385,38 @@ $(function() {
 		prCount.attr(prCount_fill);
 
 		var countAnimation = Raphael.animation({
-			x: 90, 'fill-opacity': 0.1}, 900, function(){
-				this.remove()
-			}
-		);
+			x: 90,
+			'fill-opacity': 0.1
+		}, 900, function() {
+			this.remove()
+		});
 
 		var prCountAnimation = Raphael.animation({
-			x: 50, 'fill-opacity': 1}, 900, function()
-			{
-				countValue = this;
-			}
-		);
+			x: 50,
+			'fill-opacity': 1
+		}, 900, function() {
+			countValue = this;
+		});
 
 		var animParamP = {
-		  x: 50
+			x: 50
 		};
 
 		countValue.animate(countAnimation);
 		prCount.animateWith(countValue, animParamP, prCountAnimation);
 	}
 
-	function updateSuccess(text)
-	{
-		successValue.attr({text: text});
+	function updateSuccess(text) {
+		successValue.attr({
+			text: text
+		});
 
 	}
 
-	function updateFail(text)
-	{
-		failValue.attr({text: text});
+	function updateFail(text) {
+		failValue.attr({
+			text: text
+		});
 
 	}
 

@@ -2,10 +2,9 @@
 {
 	width: auto;
 	height: 500px;
-	border-radius: 6px; 
-	/* border: 1px solid #aaa;*/
-	/*background-color: #ECF0F1;*/
-	background-image: url(../images/backgroung3.jpg);
+	border-radius: 6px;
+	background-color: whitesmoke;
+	/*background-image: url(../images/backgroung2.jpg);*/
 }
 
 #paper.error
